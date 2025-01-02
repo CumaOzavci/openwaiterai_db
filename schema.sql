@@ -227,6 +227,41 @@ ALTER SEQUENCE public.nutritionalvalues_id_seq OWNED BY public.nutritionalvalues
 
 
 --
+-- Name: restaurantinfo; Type: TABLE; Schema: public; Owner: openwaiterai
+--
+
+CREATE TABLE public.restaurantinfo (
+    id integer NOT NULL,
+    category character varying(50) NOT NULL,
+    description text NOT NULL
+);
+
+
+ALTER TABLE public.restaurantinfo OWNER TO openwaiterai;
+
+--
+-- Name: restaurantinfo_id_seq; Type: SEQUENCE; Schema: public; Owner: openwaiterai
+--
+
+CREATE SEQUENCE public.restaurantinfo_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.restaurantinfo_id_seq OWNER TO openwaiterai;
+
+--
+-- Name: restaurantinfo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: openwaiterai
+--
+
+ALTER SEQUENCE public.restaurantinfo_id_seq OWNED BY public.restaurantinfo.id;
+
+
+--
 -- Name: allergens id; Type: DEFAULT; Schema: public; Owner: openwaiterai
 --
 
@@ -259,6 +294,13 @@ ALTER TABLE ONLY public.menuitems ALTER COLUMN id SET DEFAULT nextval('public.me
 --
 
 ALTER TABLE ONLY public.nutritionalvalues ALTER COLUMN id SET DEFAULT nextval('public.nutritionalvalues_id_seq'::regclass);
+
+
+--
+-- Name: restaurantinfo id; Type: DEFAULT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.restaurantinfo ALTER COLUMN id SET DEFAULT nextval('public.restaurantinfo_id_seq'::regclass);
 
 
 --
@@ -315,6 +357,14 @@ ALTER TABLE ONLY public.menuitems
 
 ALTER TABLE ONLY public.nutritionalvalues
     ADD CONSTRAINT nutritionalvalues_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: restaurantinfo restaurantinfo_pkey; Type: CONSTRAINT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.restaurantinfo
+    ADD CONSTRAINT restaurantinfo_pkey PRIMARY KEY (id);
 
 
 --

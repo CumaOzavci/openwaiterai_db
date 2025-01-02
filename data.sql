@@ -770,6 +770,24 @@ COPY public.nutritionalvalues (id, menu_item_id, calories, protein, carbohydrate
 
 
 --
+-- Data for Name: restaurantinfo; Type: TABLE DATA; Schema: public; Owner: openwaiterai
+--
+
+COPY public.restaurantinfo (id, category, description) FROM stdin;
+1	summary	Tavuk Dünyası, founded in 2011 in Turkey, is a restaurant chain specializing in marinated chicken dishes. With over 320 locations in Turkey and international branches in Northern Cyprus, Spain, Portugal, and the U.S. (as "Gagawa"), it offers a diverse menu and focuses on quality service. Recognized with awards like Superior Taste and "Food Company of the Year," it continues to expand globally.
+2	founding and ownership	Established in 2011 by Taylan Kaya in Turkey. Mediterra Capital Partners acquired full ownership in 2017.
+3	menu and specialty	Known for chicken marinated for 12-14 hours in special sauces and spices. Includes chicken, red meat, salads, and desserts.
+4	awards and recognition	Received Superior Taste Awards and was named "Food Company of the Year" and "Most Trendy Restaurant Chain."
+5	first branch	Opened its first restaurant in Istanbul in 2012.
+6	turkish presence	Operates 320 restaurants across 56 cities in Turkey as of 2023.
+7	international expansion	Has 4 restaurants in Northern Cyprus, 11 in Spain, 1 in Portugal, and operates in the U.S. under "Gagawa."
+8	service options	Offers takeout services under "Şeften İste" and provides online ordering through its official website.
+9	customer experience	Focused on quality service and customer satisfaction with Mediterranean-inspired dishes.
+10	website	Official website: https://www.tavukdunyasi.com.
+\.
+
+
+--
 -- Name: allergens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: openwaiterai
 --
 
@@ -802,6 +820,13 @@ SELECT pg_catalog.setval('public.menuitems_id_seq', 92, true);
 --
 
 SELECT pg_catalog.setval('public.nutritionalvalues_id_seq', 85, true);
+
+
+--
+-- Name: restaurantinfo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: openwaiterai
+--
+
+SELECT pg_catalog.setval('public.restaurantinfo_id_seq', 10, true);
 
 
 --
