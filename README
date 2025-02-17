@@ -1,5 +1,4 @@
-# OpenWaiterAI Database
-
+# OpenWaiterAI PostgreSQL Database
 This repository provides a PostgreSQL database setup for the OpenWaiterAI project using Docker Compose. It includes initialization scripts to set up your database schema and seed data automatically on first startup.
 
 ## Overview
@@ -83,6 +82,9 @@ If you want to remove the associated volume (thus deleting the database data), r
 docker-compose down -v
 ```
 
-## License
 
-This project is licensed under the [MIT License](LICENSE).
+## Data
+Data is scrapped from the official [Tavuk Dünyası](https://www.tavukdunyasi.com/tr-en/) website with ChatGPT's search tool. It might contain wrong values. Menu items can be found in `menu_item_datas.py`. Also you can find database filling script at `enter_menu_item.py`.
+
+## License
+This project and data is licensed under the [MIT License](LICENSE).
