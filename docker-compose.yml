@@ -3,13 +3,13 @@ version: '3.8'
 services:
   postgres:
     image: postgres:17
-    container_name: postgres_container
+    container_name: openwaiterai_db
     environment:
-      POSTGRES_USER: openwaiterai
-      POSTGRES_PASSWORD: openwaiterai_password
-      POSTGRES_DB: openwaiteraidb
+      POSTGRES_DB: ${OPENWAITERAI_DB_NAME}
+      POSTGRES_USER: ${OPENWAITERAI_DB_USER}
+      POSTGRES_PASSWORD: ${OPENWAITERAI_DB_PASSWORD}
     ports:
-      - "5432:5432"
+      - "${OPENWAITERAI_DB_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
