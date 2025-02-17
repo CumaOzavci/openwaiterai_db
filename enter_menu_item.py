@@ -1,3 +1,4 @@
+import os
 import psycopg2
 from psycopg2 import sql
 
@@ -31,11 +32,11 @@ def insert_menu_data(data):
     try:
         # Establish the database connection
         conn = psycopg2.connect(
-            dbname="openwaiteraidb",
-            user="openwaiterai",
-            password="openwaiterai_password",
-            host="localhost",
-            port="5432"
+            dbname=os.getenv("OPENWAITERAI_DB_NAME"),
+            host=os.getenv("OPENWAITERAI_DB_HOST"),
+            port=os.getenv("OPENWAITERAI_DB_PORT"),
+            user=os.getenv("OPENWAITERAI_DB_USER"),
+            password=os.getenv("OPENWAITERAI_DB_PASSWORD"),
         )
         cursor = conn.cursor()
 
