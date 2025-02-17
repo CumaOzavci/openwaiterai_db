@@ -1,6 +1,8 @@
 # OpenWaiterAI PostgreSQL Database
 This repository provides a PostgreSQL database setup for the OpenWaiterAI project using Docker Compose. It includes initialization scripts to set up your database schema and seed data automatically on first startup.
 
+Releated blog post can be found [here](https://cumaozavci.github.io/ai/openwaiterai/rag/2025/02/17/openwaiterai_2_rag.html).
+
 ## Overview
 
 The project uses the official PostgreSQL Docker image along with a custom Docker Compose configuration. On initial startup, two SQL scripts are executed:
