@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 17.2 (Debian 17.2-1.pgdg120+1)
--- Dumped by pg_dump version 17.2 (Debian 17.2-1.pgdg120+1)
+-- Dumped by pg_dump version 17.3 (Ubuntu 17.3-3.pgdg22.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -227,6 +227,78 @@ ALTER SEQUENCE public.nutritionalvalues_id_seq OWNED BY public.nutritionalvalues
 
 
 --
+-- Name: orderitems; Type: TABLE; Schema: public; Owner: openwaiterai
+--
+
+CREATE TABLE public.orderitems (
+    id integer NOT NULL,
+    order_id integer,
+    menu_item_id integer,
+    quantity integer NOT NULL,
+    notes text,
+    CONSTRAINT orderitems_quantity_check CHECK ((quantity > 0))
+);
+
+
+ALTER TABLE public.orderitems OWNER TO openwaiterai;
+
+--
+-- Name: orderitems_id_seq; Type: SEQUENCE; Schema: public; Owner: openwaiterai
+--
+
+CREATE SEQUENCE public.orderitems_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.orderitems_id_seq OWNER TO openwaiterai;
+
+--
+-- Name: orderitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: openwaiterai
+--
+
+ALTER SEQUENCE public.orderitems_id_seq OWNED BY public.orderitems.id;
+
+
+--
+-- Name: orders; Type: TABLE; Schema: public; Owner: openwaiterai
+--
+
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    order_date timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.orders OWNER TO openwaiterai;
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: openwaiterai
+--
+
+CREATE SEQUENCE public.orders_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.orders_id_seq OWNER TO openwaiterai;
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: openwaiterai
+--
+
+ALTER SEQUENCE public.orders_id_seq OWNED BY public.orders.id;
+
+
+--
 -- Name: restaurantinfo; Type: TABLE; Schema: public; Owner: openwaiterai
 --
 
@@ -297,6 +369,20 @@ ALTER TABLE ONLY public.nutritionalvalues ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: orderitems id; Type: DEFAULT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.orderitems ALTER COLUMN id SET DEFAULT nextval('public.orderitems_id_seq'::regclass);
+
+
+--
+-- Name: orders id; Type: DEFAULT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.orders_id_seq'::regclass);
+
+
+--
 -- Name: restaurantinfo id; Type: DEFAULT; Schema: public; Owner: openwaiterai
 --
 
@@ -357,6 +443,22 @@ ALTER TABLE ONLY public.menuitems
 
 ALTER TABLE ONLY public.nutritionalvalues
     ADD CONSTRAINT nutritionalvalues_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: orderitems orderitems_pkey; Type: CONSTRAINT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.orderitems
+    ADD CONSTRAINT orderitems_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: orders orders_pkey; Type: CONSTRAINT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
 
 
 --
@@ -421,6 +523,22 @@ ALTER TABLE ONLY public.menuitems
 
 ALTER TABLE ONLY public.nutritionalvalues
     ADD CONSTRAINT nutritionalvalues_menu_item_id_fkey FOREIGN KEY (menu_item_id) REFERENCES public.menuitems(id) ON DELETE CASCADE;
+
+
+--
+-- Name: orderitems orderitems_menu_item_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.orderitems
+    ADD CONSTRAINT orderitems_menu_item_id_fkey FOREIGN KEY (menu_item_id) REFERENCES public.menuitems(id);
+
+
+--
+-- Name: orderitems orderitems_order_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.orderitems
+    ADD CONSTRAINT orderitems_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(id) ON DELETE CASCADE;
 
 
 --
