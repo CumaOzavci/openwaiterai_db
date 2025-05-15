@@ -91,6 +91,43 @@ ALTER SEQUENCE public.categories_id_seq OWNED BY public.categories.id;
 
 
 --
+-- Name: customermanagementqueries; Type: TABLE; Schema: public; Owner: openwaiterai
+--
+
+CREATE TABLE public.customermanagementqueries (
+    id integer NOT NULL,
+    question_text text NOT NULL,
+    question_submitted_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    answer_text text,
+    answered_at timestamp with time zone
+);
+
+
+ALTER TABLE public.customermanagementqueries OWNER TO openwaiterai;
+
+--
+-- Name: customermanagementqueries_id_seq; Type: SEQUENCE; Schema: public; Owner: openwaiterai
+--
+
+CREATE SEQUENCE public.customermanagementqueries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.customermanagementqueries_id_seq OWNER TO openwaiterai;
+
+--
+-- Name: customermanagementqueries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: openwaiterai
+--
+
+ALTER SEQUENCE public.customermanagementqueries_id_seq OWNED BY public.customermanagementqueries.id;
+
+
+--
 -- Name: ingredients; Type: TABLE; Schema: public; Owner: openwaiterai
 --
 
@@ -383,6 +420,13 @@ ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.c
 
 
 --
+-- Name: customermanagementqueries id; Type: DEFAULT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.customermanagementqueries ALTER COLUMN id SET DEFAULT nextval('public.customermanagementqueries_id_seq'::regclass);
+
+
+--
 -- Name: ingredients id; Type: DEFAULT; Schema: public; Owner: openwaiterai
 --
 
@@ -445,6 +489,14 @@ ALTER TABLE ONLY public.allergens
 
 ALTER TABLE ONLY public.categories
     ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: customermanagementqueries customermanagementqueries_pkey; Type: CONSTRAINT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.customermanagementqueries
+    ADD CONSTRAINT customermanagementqueries_pkey PRIMARY KEY (id);
 
 
 --
