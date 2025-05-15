@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 17.2 (Debian 17.2-1.pgdg120+1)
--- Dumped by pg_dump version 17.3 (Ubuntu 17.3-3.pgdg22.04+1)
+-- Dumped by pg_dump version 17.4 (Ubuntu 17.4-1.pgdg22.04+2)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -334,6 +334,41 @@ ALTER SEQUENCE public.restaurantinfo_id_seq OWNED BY public.restaurantinfo.id;
 
 
 --
+-- Name: waitercalls; Type: TABLE; Schema: public; Owner: openwaiterai
+--
+
+CREATE TABLE public.waitercalls (
+    id integer NOT NULL,
+    call_time timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+    reason text
+);
+
+
+ALTER TABLE public.waitercalls OWNER TO openwaiterai;
+
+--
+-- Name: waitercalls_id_seq; Type: SEQUENCE; Schema: public; Owner: openwaiterai
+--
+
+CREATE SEQUENCE public.waitercalls_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.waitercalls_id_seq OWNER TO openwaiterai;
+
+--
+-- Name: waitercalls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: openwaiterai
+--
+
+ALTER SEQUENCE public.waitercalls_id_seq OWNED BY public.waitercalls.id;
+
+
+--
 -- Name: allergens id; Type: DEFAULT; Schema: public; Owner: openwaiterai
 --
 
@@ -387,6 +422,13 @@ ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.order
 --
 
 ALTER TABLE ONLY public.restaurantinfo ALTER COLUMN id SET DEFAULT nextval('public.restaurantinfo_id_seq'::regclass);
+
+
+--
+-- Name: waitercalls id; Type: DEFAULT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.waitercalls ALTER COLUMN id SET DEFAULT nextval('public.waitercalls_id_seq'::regclass);
 
 
 --
@@ -475,6 +517,14 @@ ALTER TABLE ONLY public.restaurantinfo
 
 ALTER TABLE ONLY public.allergens
     ADD CONSTRAINT unique_allergen_name UNIQUE (name);
+
+
+--
+-- Name: waitercalls waitercalls_pkey; Type: CONSTRAINT; Schema: public; Owner: openwaiterai
+--
+
+ALTER TABLE ONLY public.waitercalls
+    ADD CONSTRAINT waitercalls_pkey PRIMARY KEY (id);
 
 
 --
